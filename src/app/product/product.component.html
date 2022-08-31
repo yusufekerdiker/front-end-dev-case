@@ -1,0 +1,60 @@
+<!-- <div class="card-group"></div> -->
+<!-- <div class="card-deck"></div> -->
+
+<!-- <html class="bg-dark"> -->
+
+
+<nav class="navbar bg-primary" >
+
+    <div class="container" style="justify-content: flex-start">
+
+    <!-- <form class="d-flex" role="search"> -->
+    <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filterText" />
+    <small *ngIf="filterText" class="text-dark">Şu an <strong>{{filterText}}</strong> arıyorsunuz</small>
+    <!-- filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz yazsın -->
+    <!-- <button class="btn btn-outline-info" type="submit">Search</button> -->
+    <!-- </form> -->
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <!-- kartlar yan yana gelmezce container yanına row classı ekle -->
+    <div class="row">
+
+        <div *ngIf="bundles; else noBundles" class="text-primary"></div>
+        <ng-template #noBundles>
+            <div class="alert alert-dark my-2" role="alert">
+                Bundle API Boş
+            </div>
+        </ng-template>
+
+        <div *ngIf="!filterText; else noSearch" class="text-primary"></div>
+        <ng-template #noSearch>
+            <div class="alert alert-dark my-2" role="alert">
+                Aradığınız ürün bulunamadı!
+            </div>
+        </ng-template>
+
+        <div *ngFor="let bundle of bundles | productFilter:filterText" class="card bundleBox" style="width: 18rem;">
+
+            <img class="card-img-top" [src]="bundle.icon" alt="Card image cap">
+
+            <div class="card-body">
+
+                <h5 class="card-title">V1 = {{bundle.name}}</h5>
+                <h5 class="card-title">V2 = Game {{bundle.id}}</h5>
+                <p class="card-text"><small class="text-muted">Bundle: {{bundle.bundle}}</small></p>
+                <p class="card-text"><small class="text-muted">Studio: {{bundle.studio}}</small></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- </html> -->

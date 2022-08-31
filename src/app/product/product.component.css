@@ -1,0 +1,22 @@
+.bundleBox {
+    margin: auto;
+    padding: auto;
+}
+
+.card {
+    padding: 0;
+    margin: 1%;
+}
+
+.row {
+    margin: auto;
+    display: flex;
+    /* flex: auto; */
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    margin: auto;
+    padding: 0.5rem;
+}
