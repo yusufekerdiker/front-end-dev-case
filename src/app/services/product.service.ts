@@ -6,13 +6,21 @@ import { tap, catchError, throwError } from 'rxjs';
 
 @Injectable()
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+  bundles: Product[] = [];
 
   url = 'https://5b96285652764b001413bbd1.mockapi.io/api/data';
 
+  // getProducts(): any {
+  //   this.http.get<Product[]>(this.url).subscribe((res: Product[]) => {
+  //     this.bundles = res;
+  //   });
+  // }
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url).pipe(
-      tap((data) => console.log(JSON.stringify(data))),
+      // tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -20,9 +28,9 @@ export class ProductService {
   handleError(err: HttpErrorResponse) {
     let errMsg = '';
     if (err.error instanceof ErrorEvent) {
-      errMsg = 'Bir hata oluştu! :' + err.error.message
+      errMsg = 'Bir hata oluştu! :' + err.error.message;
     } else {
-      errMsg = 'Sistemsel bir hata'
+      errMsg = 'Sistemsel bir hata';
     }
     return throwError(errMsg);
   }

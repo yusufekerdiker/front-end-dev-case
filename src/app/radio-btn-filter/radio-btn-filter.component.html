@@ -1,0 +1,57 @@
+<div class="container text-primary">
+
+    <h3 class="text-primary">Bundle Id Filtering</h3>
+    <!-- *ngIf="let item of idStartsWith"> -->
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="filter" id="All" value="All" checked
+            [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectionChange()">
+        <label class="form-check-label" for="All">Total:{{showAll}}</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="filter" id="1" value="1"
+            [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectionChange()">
+        <label class="form-check-label" for="1">
+            1 : {{radioBundles}} Adet
+        </label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="filter" id="2" value="2"
+            [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectionChange()">
+        <label class="form-check-label" for="2">
+            2 : {{radioBundles}} Adet
+        </label>
+    </div>
+</div>
+
+<!-- <div *ngIf="radioBundles"> -->
+<!-- </div> -->
+<!-- {{deneme}} -->
+
+<!-- <div class="container text-primary">
+
+    *ngIf="let item of idStartsWith">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="filter" id="All" value="All" checked>
+        <label class="form-check-label" for="All">All:{{showAll}}</label>
+    </div>
+
+    <div class="form-check form-check-inline" *ngFor="let nm of numberSize; let idxNum=index">
+        <input class="form-check-input" type="radio" name="filter" id="forIdAll" value="StartIdFor">
+        <label class="form-check-label" for="forIdAll">
+            {{idxNum+1}}:{{productValueOfId}}
+        </label>
+    </div>
+    
+</div> -->
+<!-- *ngFor="let bundle of productValueOfId; let i=index"> *ngFor="let bundle of indexStartsWith | slice:0:9; let i=index"> -->
+<!-- <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="filter" id="sw1" value="Start1">
+        <label class="form-check-label" for="sw1">1:{{startsWith1}}</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="filter" id="sw2" value="Start2">
+        <label class="form-check-label" for="sw2">2:{{startsWith2}}</label>
+    </div> -->

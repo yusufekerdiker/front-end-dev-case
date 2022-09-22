@@ -1,53 +1,110 @@
 <!-- <div class="card-group"></div> -->
 <!-- <div class="card-deck"></div> -->
+<!-- <html class="bg-dark"></html> -->
 
-<!-- <html class="bg-dark"> -->
-
-
-<nav class="navbar bg-primary" >
-
-    <div class="container" style="justify-content: flex-start">
-
-    <!-- <form class="d-flex" role="search"> -->
-    <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filterText" />
-    <small *ngIf="filterText" class="text-dark">Şu an <strong>{{filterText}}</strong> arıyorsunuz</small>
-    <!-- filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz yazsın -->
-    <!-- <button class="btn btn-outline-info" type="submit">Search</button> -->
-    <!-- </form> -->
-
+<!-- <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6">
+        <div *ngFor="let bundle of bundles | productFilter:filterText" class="col">
+            <div class="card h-100">
+                <img class="card-img-top" [src]="bundle.icon" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">V1 = {{bundle.name}}</h5>
+                    <h5 class="card-title">V2 = Game {{bundle.id}}</h5>
+                    <p class="card-text"><small class="text-muted">Bundle: {{bundle.bundle}}</small></p>
+                    <p class="card-text"><small class="text-muted">Studio: {{bundle.studio}}</small></p>
+                </div>
+            </div>
+        </div>
     </div>
+</div> -->
 
-</nav>
+<!-- <form class="d-flex" role="search">
+filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz yazsın
+<button class="btn btn-outline-info" type="submit">Search</button>
+</form> -->
+
+<!-- <div>
+    <nav class="navbar bg-primary">
+        <div class="container" style="justify-content: flex-start">
+            <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search"
+                aria-label="Search" [(ngModel)]="filterText" name="filterText" />
+            <small *ngIf="filterText" class="text-dark">Şu an <strong>{{filterText}}</strong> arıyorsunuz</small>
+        </div>
+    </nav>
+</div> -->
+<div>
+    <app-nav (searchTextChanged)="onSearchTextEntered($event)"></app-nav>
+    <!-- <button (click)="dene.denemeMetodu()">anladım</button> -->
+    <app-radio-btn-filter [showAll]="getTotal()" [radioBundles]="getFilteredId(9)"
+        (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"></app-radio-btn-filter>
+    <!-- [startsWith1]="getValueStartsWith('1')" [productValueOfId]="getValueStartsWith()" [startsWith2]="getValueStartsWith('2')" [firstCharOfId]="getValueStartsWith()" -->
+</div>
+<!-- [idStartsWith]="getStartsWith(
+    bundles.filter(
+        (val: Product)
+    )"> -->
+
 
 <div class="container">
+    <!-- <div class="container-fluid"> -->
+
+    <div *ngIf="bundles; else noBundles" class="text-primary"></div>
+    <ng-template #noBundles>
+        <div class="alert alert-dark my-2" role="alert">
+            Bundle API Boş
+        </div>
+    </ng-template>
+
+    <!-- <div *ngIf="bundles && !filterText; else noSearch" class="text-primary">
+        query.includes(filterText)
+    </div> -->
+    <!-- this.onSearchTextEntered(this.searchText.includes(this.searchText).toString()); -->
+
+    <!-- .toString().includes(searchText)
+    searchText!==bundles.filter((x)=>x.name).toString() --- !productService.bundles.length === !0 -->
+    <div *ngIf="!bundles === bundles.toLocaleString().includes(searchText); else noSearch" class="text-primary"></div>
+    <!-- <div *ngIf="cardService.cards?.length === 0" class="col-12"> -->
+    <ng-template #noSearch>
+        <div class="alert alert-dark my-2" role="alert">
+            Aradığınız ürün bulunamadı!
+        </div>
+    </ng-template>
+
+    <!-- <div *ngIf="!isFounded; else allowSearch" class="text-primary"></div>
+    <ng-template #allowSearch>
+        <div></div>
+    </ng-template> -->
 
     <!-- kartlar yan yana gelmezce container yanına row classı ekle -->
-    <div class="row">
+    <!-- <div *ngIf="true"> -->
 
-        <div *ngIf="bundles; else noBundles" class="text-primary"></div>
-        <ng-template #noBundles>
-            <div class="alert alert-dark my-2" role="alert">
-                Bundle API Boş
-            </div>
-        </ng-template>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xxl-6">
 
-        <div *ngIf="!filterText; else noSearch" class="text-primary"></div>
-        <ng-template #noSearch>
-            <div class="alert alert-dark my-2" role="alert">
-                Aradığınız ürün bulunamadı!
-            </div>
-        </ng-template>
+        <div class="col" *ngFor="let bundle of bundles | productFilter:searchText">
 
-        <div *ngFor="let bundle of bundles | productFilter:filterText" class="card bundleBox" style="width: 18rem;">
+            <!-- searchText === '' || bundle.name.toLowerCase().includes(searchText) -->
+            <div *ngIf="bundleCountRadioButton === 'All' || bundleCountRadioButton == bundle.id.slice(0, 1)">
+                <!-- <div *ngIf="searchVal"></div>
+                searchText && searchText.length ? searchText : 'other text' 
+                searchText.trim() !='' ? searchText : 'some other text' -->
 
-            <img class="card-img-top" [src]="bundle.icon" alt="Card image cap">
+                <div class="card h-100">
+                    <!-- <h1 class="text-primary">
+                        {{ bundles.length >0 }}
+                        {{ bundles.length }}
+                        {{ bundles[-1]===null }}
+                        {{ bundles.length!=0 }}
+                    </h1> -->
 
-            <div class="card-body">
+                    <img class="card-img-top" [src]="bundle.icon" alt="Card image cap">
+                    <div class="card-body">
+                        <h6 class="card-title">V1 : Name = {{bundle.name}}</h6>
+                        <h6 class="card-title">V2 : Id = Game {{bundle.id}}</h6>
+                        <p class="card-text"><small class="text-muted">Bundle: {{bundle.bundle}}</small></p>
+                        <p class="card-text"><small class="text-muted">Studio: {{bundle.studio}}</small></p>
+                    </div>
 
-                <h5 class="card-title">V1 = {{bundle.name}}</h5>
-                <h5 class="card-title">V2 = Game {{bundle.id}}</h5>
-                <p class="card-text"><small class="text-muted">Bundle: {{bundle.bundle}}</small></p>
-                <p class="card-text"><small class="text-muted">Studio: {{bundle.studio}}</small></p>
+                </div>
 
             </div>
 
@@ -56,5 +113,4 @@
     </div>
 
 </div>
-
-<!-- </html> -->
+<!-- </div> -->

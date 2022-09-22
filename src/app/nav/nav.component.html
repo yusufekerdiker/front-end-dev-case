@@ -1,14 +1,28 @@
-<nav class="navbar bg-dark">
-    <div class="container" style="justify-content: center">
-        <!-- <div class="container-fluid"> -->
-        <form class="d-flex" role="search">
-            <input class="form-control me-4" id="bundleName" type="search" placeholder="Search" aria-label="Search" />
-            <!-- <input class="form-control me-4" id="bundleName" type="search" [(ngModel)]="filterText" placeholder="Search" aria-label="Search" /> -->
+<div>
+    <nav class="navbar bg-primary">
+        <div class="container" style="justify-content: flex-start">
+            <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search"
+                aria-label="Search" [(ngModel)]="enteredSearchValue" name="enteredSearchValue" (input)="onSearchTextChanged()" />
+            <small *ngIf="enteredSearchValue" class="text-dark">Şu an <strong>{{enteredSearchValue}}</strong>
+                arıyorsunuz</small>
+        </div>
+    </nav>
+</div>
+
+<!-- <div>
+    <nav class="navbar bg-primary">
+        <div class="container" style="justify-content: flex-start">
+            <form class="d-flex" role="search">
+            filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz yazsın
             <button class="btn btn-outline-info" type="submit">Search</button>
-        </form>
-        <!-- </div> -->
-    </div>
-</nav>
+            </form>
+            <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search"
+                aria-label="Search" name="filterText" />
+            <small *ngIf="" class="text-dark">Şu an <strong></strong> arıyorsunuz</small>
+            
+        </div>
+    </nav>
+</div> -->
 
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container" style="justify-content: center;">
@@ -23,7 +37,7 @@
 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button> -->
-<!-- <div class="container collapse navbar-collapse" id="navbarSupportedContent"> -->
+<!-- <div class="container collapse navbar-collapse" id="navbarSupportedContent"></div> -->
 <!-- <div class="form-group my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         </div>
@@ -38,4 +52,3 @@
         <form class="form-inline my-2 my-lg-0">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form> -->
-<!-- </div> -->
