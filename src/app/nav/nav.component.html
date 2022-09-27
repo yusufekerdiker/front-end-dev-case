@@ -1,12 +1,14 @@
 <div>
-    <nav class="navbar bg-primary">
-        <div class="container" style="justify-content: flex-start">
-            <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search"
-                aria-label="Search" [(ngModel)]="enteredSearchValue" name="enteredSearchValue" (input)="onSearchTextChanged()" />
-            <small *ngIf="enteredSearchValue" class="text-dark">Şu an <strong>{{enteredSearchValue}}</strong>
-                arıyorsunuz</small>
-        </div>
-    </nav>
+  <nav class="navbar bg-primary">
+    <div class="container" style="justify-content: flex-start">
+      <input #input (input)="onSearchTextChanged()" [(ngModel)]="enteredSearchValue" aria-label="Search"
+             class="form-control me-2"
+             id="searchBar" name="enteredSearchValue" placeholder="Search"
+             style="width: 200px;" type="search"/>
+      <small *ngIf="enteredSearchValue" class="text-dark">Şu an <strong>{{enteredSearchValue}}</strong>
+        arıyorsunuz</small>
+    </div>
+  </nav>
 </div>
 
 <!-- <div>
@@ -19,7 +21,7 @@
             <input class="form-control me-2" style="width: 200px;" id="searchBar" type="search" placeholder="Search"
                 aria-label="Search" name="filterText" />
             <small *ngIf="" class="text-dark">Şu an <strong></strong> arıyorsunuz</small>
-            
+
         </div>
     </nav>
 </div> -->

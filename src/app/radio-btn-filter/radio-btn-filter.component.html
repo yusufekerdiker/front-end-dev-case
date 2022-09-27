@@ -1,28 +1,39 @@
 <div class="container text-primary">
 
-    <h3 class="text-primary">Bundle Id Filtering</h3>
-    <!-- *ngIf="let item of idStartsWith"> -->
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="filter" id="All" value="All" checked
-            [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectionChange()">
-        <label class="form-check-label" for="All">Total:{{showAll}}</label>
+  <h3 class="text-primary">Bundle Id Filtering</h3>
+  <!-- *ngIf="let item of idStartsWith"> -->
+  <div class="form-check form-check-inline">
+    <input (change)="onRadioButtonSelectionChange()" [(ngModel)]="selectedRadioButtonValue" checked
+           class="form-check-input" id="All" name="filter"
+           type="radio" value="All">
+    <label class="form-check-label" for="All">Total:{{showAll}}</label>
+  </div>
+
+  <!--  <div class="form-check form-check-inline">
+      <input (change)="onRadioButtonSelectionChange()" [(ngModel)]="selectedRadioButtonValue" class="form-check-input" id="1" name="filter"
+             type="radio" value="1">
+      <label class="form-check-label" for="1">
+        1 : {{radioBundles}} Adet
+      </label>
     </div>
 
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="filter" id="1" value="1"
-            [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectionChange()">
-        <label class="form-check-label" for="1">
-            1 : {{radioBundles}} Adet
-        </label>
-    </div>
+      <input (change)="onRadioButtonSelectionChange()" [(ngModel)]="selectedRadioButtonValue" class="form-check-input" id="2" name="filter"
+             type="radio" value="2">
+      <label class="form-check-label" for="2">
+        2 : {{radioBundles}} Adet
+      </label>
+    </div>-->
 
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="filter" id="2" value="2"
-            [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectionChange()">
-        <label class="form-check-label" for="2">
-            2 : {{radioBundles}} Adet
-        </label>
-    </div>
+  <div *ngFor="let deneme of size; let i=index" class="form-check form-check-inline">
+    <input (change)="onRadioButtonSelectionChange()" [(ngModel)]="selectedRadioButtonValue" class="form-check-input"
+           id="{{i+1}}" name="filter"
+           type="radio" value="{{i+1}}">
+    <label class="form-check-label" for="{{i+1}}">
+      {{i + 1}} : {{radioBundles}} Adet
+    </label>
+  </div>
+
 </div>
 
 <!-- <div *ngIf="radioBundles"> -->
@@ -43,7 +54,7 @@
             {{idxNum+1}}:{{productValueOfId}}
         </label>
     </div>
-    
+
 </div> -->
 <!-- *ngFor="let bundle of productValueOfId; let i=index"> *ngFor="let bundle of indexStartsWith | slice:0:9; let i=index"> -->
 <!-- <div class="form-check form-check-inline">

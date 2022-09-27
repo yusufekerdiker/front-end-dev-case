@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-radio-btn-filter',
@@ -6,7 +6,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./radio-btn-filter.component.css'],
 })
 export class RadioBtnFilterComponent implements OnInit {
-  constructor() {}
+  // size = new Array<number>(9);
+  @Input() showAll: string = '';
 
   // @Input('showAll') hepsiniGoster: string;
   // @Input() startsWith1: string;
@@ -14,24 +15,27 @@ export class RadioBtnFilterComponent implements OnInit {
   // @Input() firstCharOfId: string;
   // @Input() idStartsWith: Product;
   // @Input() productValueOfId: Product[];
-  // size = new Array<number>(9);
-  @Input() showAll: string = '';
-  @Input() radioBundles: string = '';
-
+  @Input() radioBundles: any;
   selectedRadioButtonValue: string = 'All';
-
   @Output()
   filterRadioButtonSelectionChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  size = new Array<number>(9);
+
+  constructor() {
+  }
+
   onRadioButtonSelectionChange() {
     this.filterRadioButtonSelectionChanged.emit(this.selectedRadioButtonValue);
   }
 
-  deneme = 9;
-  denemeMetodu(): any {
-    if (this.deneme < 9) {
-      this.deneme++;
-    }
-  }
+  // deneme = 9;
+  // denemeMetodu(): any {
+  //   if (this.deneme < 9) {
+  //     this.deneme++;
+  //   }
+  // }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Product } from '../product/product';
-import { Observable } from 'rxjs/internal/Observable';
-import { tap, catchError, throwError } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Product} from '../models/product';
+import {Observable} from 'rxjs/internal/Observable';
+import {catchError, throwError} from 'rxjs';
 
 @Injectable()
 export class ProductService {
-  constructor(private http: HttpClient) { }
-
   bundles: Product[] = [];
-
   url = 'https://5b96285652764b001413bbd1.mockapi.io/api/data';
+
+  constructor(private http: HttpClient) {
+  }
 
   // getProducts(): any {
   //   this.http.get<Product[]>(this.url).subscribe((res: Product[]) => {
@@ -26,7 +26,7 @@ export class ProductService {
   }
 
   handleError(err: HttpErrorResponse) {
-    let errMsg = '';
+    let errMsg: string;
     if (err.error instanceof ErrorEvent) {
       errMsg = 'Bir hata oluştu! :' + err.error.message;
     } else {

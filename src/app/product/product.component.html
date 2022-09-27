@@ -1,6 +1,6 @@
-<!-- <div class="card-group"></div> -->
-<!-- <div class="card-deck"></div> -->
-<!-- <html class="bg-dark"></html> -->
+<!-- <div class="card-group"></div>
+<div class="card-deck"></div>
+<html class="bg-dark"></html> -->
 
 <!-- <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6">
@@ -33,11 +33,14 @@ filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz y
     </nav>
 </div> -->
 <div>
-    <app-nav (searchTextChanged)="onSearchTextEntered($event)"></app-nav>
-    <!-- <button (click)="dene.denemeMetodu()">anladım</button> -->
-    <app-radio-btn-filter [showAll]="getTotal()" [radioBundles]="getFilteredId(9)"
-        (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"></app-radio-btn-filter>
-    <!-- [startsWith1]="getValueStartsWith('1')" [productValueOfId]="getValueStartsWith()" [startsWith2]="getValueStartsWith('2')" [firstCharOfId]="getValueStartsWith()" -->
+  <app-nav (searchTextChanged)="onSearchTextEntered($event)"></app-nav>
+  <!-- <button (click)="dene.denemeMetodu()">anladım</button> -->
+  <!--  <div *ngFor="let deneme of arr; let i=index"></div>-->
+  <app-radio-btn-filter (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"
+                        [radioBundles]="getFilteredId()"
+                        [showAll]="getTotal()"></app-radio-btn-filter>
+
+  <!-- [startsWith1]="getValueStartsWith('1')" [productValueOfId]="getValueStartsWith()" [startsWith2]="getValueStartsWith('2')" [firstCharOfId]="getValueStartsWith()" -->
 </div>
 <!-- [idStartsWith]="getStartsWith(
     bundles.filter(
@@ -46,71 +49,74 @@ filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz y
 
 
 <div class="container">
-    <!-- <div class="container-fluid"> -->
+  <!-- <div class="container-fluid"> -->
 
-    <div *ngIf="bundles; else noBundles" class="text-primary"></div>
-    <ng-template #noBundles>
-        <div class="alert alert-dark my-2" role="alert">
-            Bundle API Boş
+  <div *ngIf="bundles; else noBundles" class="text-primary"></div>
+  <ng-template #noBundles>
+    <div class="alert alert-dark my-2" role="alert">
+      Bundle API Boş
+    </div>
+  </ng-template>
+
+  <!-- <div *ngIf="bundles && !filterText; else noSearch" class="text-primary">
+      query.includes(filterText)
+  </div> -->
+  <!-- this.onSearchTextEntered(this.searchText.includes(this.searchText).toString()); -->
+
+  <!-- .toString().includes(searchText)
+  searchText!==bundles.filter((x)=>x.name).toString() --- !productService.bundles.length === !0
+  bundles.values.toLocaleString() !== '' && isItIncludes !== true
+  bundles.toLocaleString().includes(searchText) === true
+  -->
+  <div *ngIf="resultSearch.length || searchText.length === 0; else noContent" class="text-primary"></div>
+  <!-- <div *ngIf="cardService.cards?.length === 0" class="col-12"> -->
+  <ng-template #noContent>
+    <div class="alert alert-dark my-2" role="alert">
+      Aradığınız ürün bulunamadı!
+    </div>
+  </ng-template>
+
+  <!-- <div *ngIf="!isFounded; else allowSearch" class="text-primary"></div>
+  <ng-template #allowSearch>
+      <div></div>
+  </ng-template> -->
+
+  <!-- kartlar yan yana gelmezce container yanına row classı ekle -->
+  <!-- <div *ngIf="true"> -->
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xxl-6">
+
+    <div *ngFor="let bundle of bundles | productFilter:searchText" class="col">
+
+      <!-- searchText === '' || bundle.name.toLowerCase().includes(searchText) -->
+      <div *ngIf="bundleCountRadioButton === 'All' || bundleCountRadioButton == bundle.id.slice(0, 1)">
+        <!-- <div *ngIf="searchVal"></div>
+        searchText && searchText.length ? searchText : 'other text'
+        searchText.trim() !='' ? searchText : 'some other text' -->
+
+        <div class="card h-100">
+          <!-- <h1 class="text-primary">
+              {{ bundles.length >0 }}
+              {{ bundles.length }}
+              {{ bundles[-1]===null }}
+              {{ bundles.length!=0 }}
+          </h1> -->
+
+          <img [src]="bundle.icon" alt="Card image cap" class="card-img-top">
+          <div class="card-body">
+            <h6 class="card-title">V1 : Name = {{bundle.name}}</h6>
+            <h6 class="card-title">V2 : Id = Game {{bundle.id}}</h6>
+            <p class="card-text"><small class="text-muted">Bundle: {{bundle.bundle}}</small></p>
+            <p class="card-text"><small class="text-muted">Studio: {{bundle.studio}}</small></p>
+          </div>
+
         </div>
-    </ng-template>
 
-    <!-- <div *ngIf="bundles && !filterText; else noSearch" class="text-primary">
-        query.includes(filterText)
-    </div> -->
-    <!-- this.onSearchTextEntered(this.searchText.includes(this.searchText).toString()); -->
-
-    <!-- .toString().includes(searchText)
-    searchText!==bundles.filter((x)=>x.name).toString() --- !productService.bundles.length === !0 -->
-    <div *ngIf="!bundles === bundles.toLocaleString().includes(searchText); else noSearch" class="text-primary"></div>
-    <!-- <div *ngIf="cardService.cards?.length === 0" class="col-12"> -->
-    <ng-template #noSearch>
-        <div class="alert alert-dark my-2" role="alert">
-            Aradığınız ürün bulunamadı!
-        </div>
-    </ng-template>
-
-    <!-- <div *ngIf="!isFounded; else allowSearch" class="text-primary"></div>
-    <ng-template #allowSearch>
-        <div></div>
-    </ng-template> -->
-
-    <!-- kartlar yan yana gelmezce container yanına row classı ekle -->
-    <!-- <div *ngIf="true"> -->
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xxl-6">
-
-        <div class="col" *ngFor="let bundle of bundles | productFilter:searchText">
-
-            <!-- searchText === '' || bundle.name.toLowerCase().includes(searchText) -->
-            <div *ngIf="bundleCountRadioButton === 'All' || bundleCountRadioButton == bundle.id.slice(0, 1)">
-                <!-- <div *ngIf="searchVal"></div>
-                searchText && searchText.length ? searchText : 'other text' 
-                searchText.trim() !='' ? searchText : 'some other text' -->
-
-                <div class="card h-100">
-                    <!-- <h1 class="text-primary">
-                        {{ bundles.length >0 }}
-                        {{ bundles.length }}
-                        {{ bundles[-1]===null }}
-                        {{ bundles.length!=0 }}
-                    </h1> -->
-
-                    <img class="card-img-top" [src]="bundle.icon" alt="Card image cap">
-                    <div class="card-body">
-                        <h6 class="card-title">V1 : Name = {{bundle.name}}</h6>
-                        <h6 class="card-title">V2 : Id = Game {{bundle.id}}</h6>
-                        <p class="card-text"><small class="text-muted">Bundle: {{bundle.bundle}}</small></p>
-                        <p class="card-text"><small class="text-muted">Studio: {{bundle.studio}}</small></p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+      </div>
 
     </div>
+
+  </div>
 
 </div>
 <!-- </div> -->
