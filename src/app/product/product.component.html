@@ -34,12 +34,12 @@ filtertexte yani searchbara boş text gönderirsek şu an boşluk arıyorsunuz y
 </div> -->
 <div>
   <app-nav (searchTextChanged)="onSearchTextEntered($event)"></app-nav>
-  <!-- <button (click)="dene.denemeMetodu()">anladım</button> -->
-  <!--  <div *ngFor="let deneme of arr; let i=index"></div>-->
+  <!-- <button (click)="dene.denemeMetodu()">anladım</button>
+  <div *ngFor="let deneme of arr; let i=index"></div>-->
   <app-radio-btn-filter (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"
-                        [radioBundles]="getFilteredId()"
-                        [showAll]="getTotal()"></app-radio-btn-filter>
-
+                        [radioBundles]="getFirstIndexOfId()"
+                        [showAll]="getTotal()">
+  </app-radio-btn-filter>
   <!-- [startsWith1]="getValueStartsWith('1')" [productValueOfId]="getValueStartsWith()" [startsWith2]="getValueStartsWith('2')" [firstCharOfId]="getValueStartsWith()" -->
 </div>
 <!-- [idStartsWith]="getStartsWith(

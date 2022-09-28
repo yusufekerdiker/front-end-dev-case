@@ -7,16 +7,19 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class RadioBtnFilterComponent implements OnInit {
   // size = new Array<number>(9);
-  @Input() showAll: string = '';
-
   // @Input('showAll') hepsiniGoster: string;
   // @Input() startsWith1: string;
   // @Input() startsWith2: string;
   // @Input() firstCharOfId: string;
   // @Input() idStartsWith: Product;
   // @Input() productValueOfId: Product[];
-  @Input() radioBundles: any;
+
+  @Input() showAll: string = '';
+
+  @Input() radioBundles: string = '';
+
   selectedRadioButtonValue: string = 'All';
+
   @Output()
   filterRadioButtonSelectionChanged: EventEmitter<string> = new EventEmitter<string>();
 
