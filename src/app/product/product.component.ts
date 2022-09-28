@@ -218,7 +218,7 @@ export class ProductComponent implements OnInit {
     this.searchText = newSearchValue;
     console.log(this.searchText);
     this.resultSearch = this.bundles.filter((val: Product) => val.name.toLocaleLowerCase().indexOf(this.searchText) !== -1 || val.bundle.toLocaleLowerCase().indexOf(this.searchText) !== -1 || val.studio.toLocaleLowerCase().indexOf(this.searchText) !== -1);
-    console.log(this.resultSearch);
+    // console.log(this.resultSearch);
     // this.resultSearch = this.searchText;
     // if (this.searchText !== '' && !this.bundles.toLocaleString().includes(this.searchText)) {
     //   this.isItIncludes = false;
